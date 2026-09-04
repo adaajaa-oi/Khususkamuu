@@ -1,1 +1,241 @@
-haloo
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Untuk Ayinn 💌</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    /* LATAR PINK KE UNGU */
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #a1c4fd 100%);
+    overflow: hidden;
+    position: relative;
+}
+
+/* HALAMAN AWAL */
+#awal {
+    text-align: center;
+    animation: muncul 1s ease;
+    z-index: 2;
+}
+
+.pesan {
+    width: 230px;
+    height: 160px;
+    background: white;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    cursor: pointer;
+    animation: goyang 1.5s infinite ease-in-out;
+}
+
+.pesan::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 115px solid transparent;
+    border-right: 115px solid transparent;
+    border-top: 80px solid #e056fd;
+}
+
+.tulisan {
+    position: relative;
+    z-index: 2;
+    margin-top: 55px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #be2edd;
+}
+
+.tap {
+    margin-top: 25px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    animation: kedip 1s infinite;
+}
+
+/* HALAMAN SURAT */
+#surat {
+    display: none;
+    text-align: center;
+    animation: muncul 1s ease;
+    padding: 20px;
+    z-index: 2;
+}
+
+h1 {
+    color: white;
+    font-size: 34px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.kata {
+    background: rgba(255, 255, 255, 0.92);
+    padding: 25px;
+    border-radius: 20px;
+    max-width: 350px;
+    color: #444;
+    line-height: 1.7;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* ANIMASI BUNGA & LOVE */
+.bunga {
+    position: fixed;
+    top: -50px;
+    pointer-events: none;
+    z-index: 1;
+    animation: gugur 6s linear infinite;
+}
+
+.love {
+    position: fixed;
+    font-size: 25px;
+    animation: terbang 3s linear forwards;
+    pointer-events: none;
+    z-index: 3;
+}
+
+@keyframes goyang {
+    0%, 100% {
+        transform: rotate(-3deg);
+    }
+    50% {
+        transform: rotate(3deg) translateY(-8px);
+    }
+}
+
+@keyframes kedip {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes muncul {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes terbang {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1.8);
+        opacity: 0;
+    }
+}
+
+@keyframes gugur {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="awal">
+    <div class="pesan" onclick="bukaPesan()">
+        <div class="tulisan">💌</div>
+    </div>
+    <div class="tap">TAP HERE 💕</div>
+</div>
+
+<div id="surat">
+    <h1>💖 For Ayinn 💖</h1>
+    <div class="kata">
+        Hai, Ayinn! 🥰<br><br>
+        aku mau bilang
+        <br><br>
+        Semoga hari-hari kamuu selalu dipenuhi
+        kebahagiaan, senyuman, dan hal-hal baik. 🌷
+        <br><br>
+        Jangan bosen senyum yahh😊
+    </div>
+</div>
+
+<script>
+// Buat bunga gugur terus-menerus di latar belakang
+setInterval(buatBunga, 400);
+
+function bukaPesan() {
+    document.getElementById("awal").style.display = "none";
+    document.getElementById("surat").style.display = "block";
+
+    for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+            buatLove();
+        }, i * 100);
+    }
+}
+
+function buatLove() {
+    const love = document.createElement("div");
+    love.className = "love";
+    love.innerHTML = "❤️";
+    love.style.left = Math.random() * 100 + "vw";
+    love.style.top = (70 + Math.random() * 30) + "vh";
+    love.style.fontSize = (15 + Math.random() * 25) + "px";
+
+    document.body.appendChild(love);
+
+    setTimeout(() => {
+        love.remove();
+    }, 3000);
+}
+
+function buatBunga() {
+    const bungaList = ["🌸", "🌺", "🌷", "🌹", "✨"];
+    const bunga = document.createElement("div");
+    bunga.className = "bunga";
+    bunga.innerHTML = bungaList[Math.floor(Math.random() * bungaList.length)];
+    bunga.style.left = Math.random() * 100 + "vw";
+    bunga.style.fontSize = (15 + Math.random() * 20) + "px";
+    bunga.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+    document.body.appendChild(bunga);
+
+    setTimeout(() => {
+        bunga.remove();
+    }, 8000);
+}
+</script>
+
+</body>
+</html>
